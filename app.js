@@ -8,6 +8,7 @@ let express=require('express');
 let app=express();
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'/views'));
+app.enable('trust proxy');
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 app.use('/urlshortner',checkloginauth);
