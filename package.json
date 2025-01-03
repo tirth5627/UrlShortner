@@ -1,0 +1,27 @@
+{
+  "name": "url-shortner",
+  "version": "0.0.0",
+  "private": true,
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "^3.1.10",
+    "express": "^5.0.1",
+    "http-errors": "~1.6.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.2",
+    "morgan": "~1.9.1",
+    "nanoid": "^5.0.9",
+    "nodemon": "^3.1.9",
+    "pug": "2.0.0-beta11",
+    "router": "^2.0.0",
+    "uuid": "^11.0.3"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

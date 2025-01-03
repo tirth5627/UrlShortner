@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="<%=url%>/output.css">
+</head>
+<body class="bg-gradient-to-tr from-indigo-400 via-purple-500 to-pink-500 min-h-screen flex items-center justify-center px-4">
+<div class="bg-white bg-opacity-90 rounded-xl p-8 shadow-2xl w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl transform hover:scale-105 transition-transform duration-500">
+    <h1 class="text-xl sm:text-3xl font-extrabold text-center text-gray-800 mb-6 animate-pulse">
+        🌟 Shorten Your URL 🌟
+    </h1>
+
+    <form action="/urlshortner" method="post" class="space-y-6">
+        <div class="relative">
+            <label for="url" class="block text-sm font-medium text-gray-700 mb-1">Enter URL</label>
+            <input
+                    id="url"
+                    type="url"
+                    name="url"
+                    placeholder="https://example.com"
+                    required
+                    class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+        </div>
+
+        <div>
+            <button
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 px-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-transform duration-300"
+            >
+                Shorten URL 🚀
+            </button>
+        </div>
+    </form>
+
+    <% if (locals.shortUrl) { %>
+    <div id="response" class="mt-8">
+        <div class="bg-green-100 p-4 rounded-lg shadow-lg flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p class="text-green-700 font-semibold break-words w-full text-center sm:flex-1" id="shortened-url">
+                Your shortened URL:<a href="<%=url%>/urlshortner/shorturl/?shorturl=<%=shortUrl%>" target="_blank" class="text-blue-600 underline break-words"><%=url%>/urlshortner/shorturl/?shorturl=<%=shortUrl%></a>
+            </p>
+            <button
+                    class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 transition-all duration-300 w-full sm:w-auto"
+                    onclick="copyToClipboard()"
+            >
+                Copy
+            </button>
+        </div>
+    </div>
+    <% } %>
+
+    <!-- Go Back to Home Button -->
+    <div class="mt-6">
+        <a
+                href="/urlshortner/analytics"
+                class="block text-center bg-gray-700 text-white py-3 px-4 rounded-lg font-semibold hover:bg-gray-800 transition-transform duration-300"
+        >
+            Go Back to Home
+        </a>
+    </div>
+</div>
+
+<script>
+    const shortenedUrl = document.getElementById('shortened-url');
+
+    function copyToClipboard() {
+        const url = shortenedUrl.innerHTML.split("href=\"")[1].split('"')[0];
+        navigator.clipboard.writeText(url).then(() => {
+            alert("URL copied to clipboard!");
+        }).catch((error) => {
+            alert("Failed to copy URL to clipboard: " + error);
+        });
+    }
+</script>
+</body>
+</html>
